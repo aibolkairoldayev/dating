@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Небольшой вопрос 💌</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+        }
+
+        body {
+            min-height: 100svh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            overflow-x: hidden;
+
+            color: #29232a;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(255, 193, 213, 0.65),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 85%,
+                    rgba(214, 202, 255, 0.65),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fff7fa,
+                    #f8f5ff
+                );
+        }
+
+
+        /* =========================================
+           ПЛАВАЮЩИЕ СЕРДЕЧКИ
+        ========================================= */
+
+        .floating {
+            position: fixed;
+
+            pointer-events: none;
+
+            opacity: 0;
+
+            animation:
+                floatUp linear infinite,
+                fadeIn 1s ease forwards;
+        }
+
+        .floating:nth-child(1) {
+            left: 8%;
+            bottom: -30px;
+            font-size: 20px;
+            animation-duration: 8s;
+            animation-delay: 1s;
+        }
+
+        .floating:nth-child(2) {
+            left: 25%;
+            bottom: -30px;
+            font-size: 14px;
+            animation-duration: 10s;
+            animation-delay: 3s;
+        }
+
+        .floating:nth-child(3) {
+            left: 55%;
+            bottom: -30px;
+            font-size: 18px;
+            animation-duration: 9s;
+            animation-delay: 2s;
+        }
+
+        .floating:nth-child(4) {
+            left: 80%;
+            bottom: -30px;
+            font-size: 15px;
+            animation-duration: 11s;
+            animation-delay: 4s;
+        }
+
+        .floating:nth-child(5) {
+            left: 92%;
+            bottom: -30px;
+            font-size: 22px;
+            animation-duration: 9s;
+            animation-delay: 6s;
+        }
+
+        @keyframes floatUp {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    rotate(25deg);
+            }
+        }
+
+        @keyframes fadeIn {
+
+            to {
+                opacity: 0.55;
+            }
+        }
+
+
+        /* =========================================
+           ОСНОВНАЯ СТРАНИЦА
+        ========================================= */
+
+        .container {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            max-width: 520px;
+
+            text-align: center;
+        }
+
+
+        /* =========================================
+           АНИМАЦИИ ПЕРВОЙ СТРАНИЦЫ
+        ========================================= */
+
+        .intro-content {
+            animation: introAppear 0.9s ease both;
+        }
+
+        @keyframes introAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .heart {
+            font-size: 56px;
+
+            margin-bottom: 18px;
+
+            opacity: 0;
+
+            animation:
+                heartAppear 0.8s ease 0.15s forwards,
+                heartbeat 2s ease-in-out 1s infinite;
+        }
+
+        @keyframes heartAppear {
+
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+
+        h1 {
+            margin: 0 0 14px;
+
+            font-size:
+                clamp(
+                    32px,
+                    8vw,
+                    46px
+                );
+
+            line-height: 1.1;
+
+            letter-spacing: -0.5px;
+
+            opacity: 0;
+
+            animation:
+                textAppear 0.8s ease 0.45s forwards;
+        }
+
+
+        .subtitle {
+            margin: 0 auto 12px;
+
+            max-width: 400px;
+
+            font-size:
+                clamp(
+                    18px,
+                    4.8vw,
+                    23px
+                );
+
+            line-height: 1.45;
+
+            color: #6c6269;
+
+            opacity: 0;
+
+            animation:
+                textAppear 0.8s ease 0.8s forwards;
+        }
+
+
+        .question-text {
+            margin: 0 auto 30px;
+
+            color: #8a7d85;
+
+            font-size: 15px;
+
+            opacity: 0;
+
+            animation:
+                textAppear 0.7s ease 1.15s forwards;
+        }
+
+
+        @keyframes textAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================================
+           КНОПКИ
+        ========================================= */
+
+        .main-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 14px;
+
+            flex-wrap: wrap;
+
+            opacity: 0;
+
+            animation:
+                buttonsAppear 0.8s ease 1.45s forwards;
+        }
+
+        @keyframes buttonsAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        button {
+            border: 0;
+
+            cursor: pointer;
+
+            font: inherit;
+
+            touch-action: manipulation;
+        }
+
+
+        .main-btn {
+            min-width: 140px;
+
+            padding: 15px 25px;
+
+            border-radius: 18px;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        /* =========================================
+           КНОПКА "КОНЕЧНО"
+        ========================================= */
+
+        .yes-btn {
+            position: relative;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff5c8a,
+                    #ff3f72
+                );
+
+            box-shadow:
+                0 10px 25px
+                rgba(255, 63, 114, 0.28);
+
+            animation:
+                yesGlow 2.2s ease-in-out
+                2.2s infinite;
+        }
+
+
+        .yes-btn::after {
+            content: "";
+
+            position: absolute;
+
+            inset: -5px;
+
+            border-radius: 22px;
+
+            border: 1px solid
+                rgba(255, 92, 138, 0.25);
+
+            animation:
+                yesRing 2.2s ease-in-out
+                2.2s infinite;
+
+            pointer-events: none;
+        }
+
+
+        @keyframes yesGlow {
+
+            0%,
+            100% {
+                transform: scale(1);
+
+                box-shadow:
+                    0 10px 25px
+                    rgba(255, 63, 114, 0.28);
+            }
+
+            50% {
+                transform: scale(1.035);
+
+                box-shadow:
+                    0 13px 34px
+                    rgba(255, 63, 114, 0.42);
+            }
+        }
+
+
+        @keyframes yesRing {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.65;
+                transform: scale(1.04);
+            }
+        }
+
+
+        .yes-btn:active {
+            transform: scale(0.94) !important;
+        }
+
+
+        /* =========================================
+           КНОПКА "НЕТ"
+        ========================================= */
+
+        .no-btn {
+            position: relative;
+
+            color: #5f565d;
+
+            background: white;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.08);
+
+            transition:
+                transform 0.35s
+                cubic-bezier(
+                    0.68,
+                    -0.55,
+                    0.27,
+                    1.55
+                );
+        }
+
+
+        /* =========================================
+           ШУТОЧНЫЙ ТЕКСТ ПОД КНОПКАМИ
+        ========================================= */
+
+        .no-message {
+            min-height: 24px;
+
+            margin-top: 16px;
+
+            color: #9a7f8c;
+
+            font-size: 14px;
+
+            opacity: 0;
+
+            transform: translateY(5px);
+
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .no-message.show {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* =========================================
+           MODAL
+        ========================================= */
+
+        .modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 1000;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(
+                    24,
+                    18,
+                    24,
+                    0.52
+                );
+
+            backdrop-filter: blur(8px);
+
+            -webkit-backdrop-filter: blur(8px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+        }
+
+
+        .modal-overlay.active {
+            opacity: 1;
+
+            visibility: visible;
+
+            pointer-events: auto;
+        }
+
+
+        .modal {
+            width: min(100%, 430px);
+
+            max-height:
+                calc(
+                    100svh - 40px
+                );
+
+            overflow-y: auto;
+
+            padding: 28px 22px 22px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.97
+                );
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 25px 80px
+                rgba(0, 0, 0, 0.25);
+
+            transform:
+                translateY(20px)
+                scale(0.96);
+
+            transition:
+                transform 0.35s ease;
+
+            -webkit-overflow-scrolling: touch;
+        }
+
+
+        .modal-overlay.active .modal {
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+
+        .modal-icon {
+            font-size: 42px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .modal h2 {
+            margin: 0 0 8px;
+
+            font-size: 27px;
+
+            line-height: 1.2;
+        }
+
+
+        .modal-description {
+            margin: 0 0 22px;
+
+            color: #766d74;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           RADIO OPTIONS
+        ========================================= */
+
+        .options {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 11px;
+
+            text-align: left;
+        }
+
+
+        .option {
+            position: relative;
+        }
+
+
+        .option input {
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .option-label {
+            min-height: 62px;
+
+            padding: 12px 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            border: 2px solid #eee7ec;
+
+            border-radius: 17px;
+
+            background: #fff;
+
+            cursor: pointer;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        .option-label:active {
+            transform: scale(0.98);
+        }
+
+
+        .option input:checked + .option-label {
+            border-color: #ff5c8a;
+
+            background: #fff1f5;
+        }
+
+
+        .option-icon {
+            width: 42px;
+
+            height: 42px;
+
+            flex: 0 0 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: #f8f4f7;
+        }
+
+
+        .option-icon svg {
+            width: 25px;
+
+            height: 25px;
+
+            fill: none;
+
+            stroke: #ff4f80;
+
+            stroke-width: 1.8;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+        }
+
+
+        .option-text {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 2px;
+        }
+
+
+        .option-title {
+            font-size: 17px;
+
+            font-weight: 700;
+        }
+
+
+        .option-subtitle {
+            font-size: 14px;
+
+            color: #81777e;
+        }
+
+
+        /* =========================================
+           DATE OPTIONS
+        ========================================= */
+
+        .date-options {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 10px;
+
+            margin-top: 10px;
+        }
+
+
+        .date-option {
+            position: relative;
+        }
+
+
+        .date-option input {
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .date-label {
+            min-height: 92px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 2px solid #eee7ec;
+
+            border-radius: 18px;
+
+            cursor: pointer;
+
+            background: white;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        .date-label:active {
+            transform: scale(0.96);
+        }
+
+
+        .date-option input:checked + .date-label {
+            border-color: #ff5c8a;
+
+            background: #fff1f5;
+        }
+
+
+        .date-day {
+            font-size: 27px;
+
+            font-weight: 800;
+        }
+
+
+        .date-month {
+            font-size: 14px;
+
+            color: #81777e;
+
+            margin-top: 3px;
+        }
+
+
+        /* =========================================
+           MODAL BUTTON
+        ========================================= */
+
+        .modal-actions {
+            margin-top: 22px;
+        }
+
+
+        .next-btn {
+            width: 100%;
+
+            padding: 16px 20px;
+
+            border-radius: 17px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff5c8a,
+                    #ff3f72
+                );
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 10px 24px
+                rgba(255, 63, 114, 0.24);
+
+            transition:
+                transform 0.2s ease;
+        }
+
+
+        .next-btn:active {
+            transform: scale(0.97);
+        }
+
+
+        /* =========================================
+           ROTATION
+        ========================================= */
+
+        .rotation-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .rotate-upside-down {
+            animation: flipUpsideDown 1s ease-in-out forwards;
+        }
+
+        @keyframes flipUpsideDown {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(180deg);
+            }
+        }
+
+        .rotate-back {
+            animation: flipBack 1s ease-in-out forwards;
+        }
+
+        @keyframes flipBack {
+            from {
+                transform: rotate(180deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+
+        /* =========================================
+           FINAL MODAL
+        ========================================= */
+
+        .final-image {
+            width: 100%;
+
+            height: 210px;
+
+            object-fit: cover;
+
+            border-radius: 20px;
+
+            margin-bottom: 20px;
+
+            display: block;
+        }
+
+
+        .final-text {
+            margin: 0 0 22px;
+
+            font-size: 17px;
+
+            line-height: 1.5;
+
+            color: #6e656c;
+        }
+
+
+        .success-icon {
+            font-size: 40px;
+
+            margin-bottom: 5px;
+        }
+
+
+        /* =========================================
+           SMALL SCREENS
+        ========================================= */
+
+        @media (max-width: 380px) {
+
+            body {
+                padding: 15px;
+            }
+
+
+            .modal-overlay {
+                padding: 15px;
+            }
+
+
+            .modal {
+                padding:
+                    23px 17px 18px;
+
+                border-radius: 23px;
+            }
+
+
+            .modal h2 {
+                font-size: 24px;
+            }
+
+
+            .option-label {
+                min-height: 56px;
+
+                padding:
+                    9px 11px;
+            }
+
+
+            .option-icon {
+                width: 38px;
+
+                height: 38px;
+
+                flex-basis: 38px;
+            }
+
+
+            .date-label {
+                min-height: 82px;
+            }
+
+
+            .date-day {
+                font-size: 24px;
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration:
+                    0.01ms !important;
+
+                transition-duration:
+                    0.01ms !important;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     ПЛАВАЮЩИЕ ЭЛЕМЕНТЫ
+========================================= -->
+
+<div class="floating">♡</div>
+<div class="floating">✦</div>
+<div class="floating">♡</div>
+<div class="floating">✦</div>
+<div class="floating">♡</div>
+
+
+<!-- =========================================
+     ПЕРВАЯ СТРАНИЦА
+========================================= -->
+
+<div class="container">
+
+    <div class="intro-content">
+
+        <div class="heart">
+            💌
+        </div>
+
+
+        <h1>
+            Привет, Маша!
+        </h1>
+
+
+        <p class="subtitle">
+            У меня к тебе один очень важный вопрос…
+        </p>
+
+
+        <p class="question-text">
+            Хочешь ли ты пойти со мной на свидание? 😊
+        </p>
+
+
+        <div class="main-buttons">
+
+            <button
+                type="button"
+                class="main-btn yes-btn"
+                id="yesButton">
+
+                Конечно ❤️
+
+            </button>
+
+
+            <button
+                type="button"
+                class="main-btn no-btn"
+                id="noButton">
+
+                Нет
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="no-message"
+            id="noMessage">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MODAL 1 — КУДА?
+========================================= -->
+
+<div
+    class="modal-overlay"
+    id="destinationModal">
+
+    <div class="modal">
+
+        <div class="modal-icon">
+            ✨
+        </div>
+
+
+        <h2>
+            Куда ты хочешь?
+        </h2>
+
+
+        <p class="modal-description">
+            Выбирай, я подстроюсь 😉
+        </p>
+
+
+        <div class="options">
+
+
+            <!-- БИЛЬЯРД -->
+
+            <div class="option">
+
+                <input
+                    type="radio"
+                    name="destination"
+                    id="billiards"
+                    value="бильярд">
+
+
+                <label
+                    class="option-label"
+                    for="billiards">
+
+                    <span class="option-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="8">
+                            </circle>
+
+                            <circle
+                                cx="9"
+                                cy="9"
+                                r="1.2">
+                            </circle>
+
+                            <circle
+                                cx="15"
+                                cy="15"
+                                r="1.2">
+                            </circle>
+
+                            <path
+                                d="M3 21l6-6">
+                            </path>
+
+                        </svg>
+
+                    </span>
+
+
+                    <span class="option-text">
+
+                        <span class="option-title">
+                            Бильярд
+                        </span>
+
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <!-- ПИКНИК -->
+
+            <div class="option">
+
+                <input
+                    type="radio"
+                    name="destination"
+                    id="picnic"
+                    value="пикник (берёзовая роща)">
+
+
+                <label
+                    class="option-label"
+                    for="picnic">
+
+                    <span class="option-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path
+                                d="M5 21V9">
+                            </path>
+
+                            <path
+                                d="M5 9c4-3 8 3 14-1">
+                            </path>
+
+                            <path
+                                d="M5 14c4-3 8 3 14-1">
+                            </path>
+
+                            <path
+                                d="M5 9l-2-4">
+                            </path>
+
+                            <path
+                                d="M5 9l3-5">
+                            </path>
+
+                        </svg>
+
+                    </span>
+
+
+                    <span class="option-text">
+
+                        <span class="option-title">
+                            Пикник
+                        </span>
+
+                        <span class="option-subtitle">
+                            Берёзовая роща
+                        </span>
+
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <!-- ТЕАТР -->
+
+            <div class="option">
+
+                <input
+                    type="radio"
+                    name="destination"
+                    id="theatre"
+                    value="театр">
+
+
+                <label
+                    class="option-label"
+                    for="theatre">
+
+                    <span class="option-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <path
+                                d="M4 20h16">
+                            </path>
+
+                            <path
+                                d="M6 20V9">
+                            </path>
+
+                            <path
+                                d="M18 20V9">
+                            </path>
+
+                            <path
+                                d="M4 9h16">
+                            </path>
+
+                            <path
+                                d="M6 9l6-5 6 5">
+                            </path>
+
+                            <path
+                                d="M9 13v3">
+                            </path>
+
+                            <path
+                                d="M15 13v3">
+                            </path>
+
+                        </svg>
+
+                    </span>
+
+
+                    <span class="option-text">
+
+                        <span class="option-title">
+                            Театр
+                        </span>
+
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <!-- СТЕНДАП -->
+
+            <div class="option">
+
+                <input
+                    type="radio"
+                    name="destination"
+                    id="standup"
+                    value="стендап (English)">
+
+
+                <label
+                    class="option-label"
+                    for="standup">
+
+                    <span class="option-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <rect
+                                x="8"
+                                y="3"
+                                width="8"
+                                height="13"
+                                rx="4">
+                            </rect>
+
+                            <path
+                                d="M5 11a7 7 0 0 0 14 0">
+                            </path>
+
+                            <path
+                                d="M12 18v3">
+                            </path>
+
+                            <path
+                                d="M8 21h8">
+                            </path>
+
+                        </svg>
+
+                    </span>
+
+
+                    <span class="option-text">
+
+                        <span class="option-title">
+                            Стендап
+                        </span>
+
+                        <span class="option-subtitle">
+                            English
+                        </span>
+
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="next-btn"
+                id="destinationNext">
+
+                Далее →
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MODAL 2 — ДАТА
+========================================= -->
+
+<div
+    class="modal-overlay"
+    id="dateModal">
+
+    <div class="rotation-wrapper">
+
+        <div class="modal" id="dateModalContent">
+
+            <div class="modal-icon">
+                📅
+            </div>
+
+
+            <h2>
+                Когда тебе удобно?
+            </h2>
+
+
+            <p class="modal-description">
+                Выбирай дату 😉
+            </p>
+
+
+            <div class="date-options">
+
+
+                <!-- 9 ОКТЯБРЯ -->
+
+                <div class="date-option">
+
+                    <input
+                        type="radio"
+                        name="date"
+                        id="date9"
+                        value="9 октября">
+
+
+                    <label
+                        class="date-label"
+                        for="date9">
+
+                        <span class="date-day">
+                            9
+                        </span>
+
+                        <span class="date-month">
+                            октября
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- 10 ОКТЯБРЯ -->
+
+                <div class="date-option">
+
+                    <input
+                        type="radio"
+                        name="date"
+                        id="date10"
+                        value="10 октября">
+
+
+                    <label
+                        class="date-label"
+                        for="date10">
+
+                        <span class="date-day">
+                            10
+                        </span>
+
+                        <span class="date-month">
+                            октября
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- 11 ОКТЯБРЯ -->
+
+                <div class="date-option">
+
+                    <input
+                        type="radio"
+                        name="date"
+                        id="date11"
+                        value="11 октября">
+
+
+                    <label
+                        class="date-label"
+                        for="date11">
+
+                        <span class="date-day">
+                            11
+                        </span>
+
+                        <span class="date-month">
+                            октября
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="next-btn"
+                    id="dateNext">
+
+                    Далее →
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MODAL 3 — ФИНАЛ
+========================================= -->
+
+<div
+    class="modal-overlay"
+    id="finalModal">
+
+    <div class="modal">
+
+
+        <!-- ВРЕМЕННАЯ КАРТИНКА -->
+
+        <img
+            class="final-image"
+            id="finalImage"
+            src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=900&q=80"
+            alt="Свидание">
+
+
+        <div class="success-icon">
+            💕
+        </div>
+
+
+        <h2>
+            Всё договорились!
+        </h2>
+
+
+        <p class="final-text">
+            Остался последний штрих — отправь мне свои ответы 💌
+        </p>
+
+
+        <button
+            type="button"
+            class="next-btn"
+            id="sendWhatsApp">
+
+            Отправить ответы в WhatsApp
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+    ============================================================
+    НАСТРОЙКИ
+    ============================================================
+    */
+
+    const WHATSAPP_NUMBER = "77001234567";
+
+
+    /*
+    ============================================================
+    ПЕРЕМЕННЫЕ
+    ============================================================
+    */
+
+    let selectedDestination = "";
+
+    let selectedDate = "";
+
+    let noClickCount = 0;
+
+
+    /*
+    ============================================================
+    ЭЛЕМЕНТЫ
+    ============================================================
+    */
+
+    const yesButton =
+        document.getElementById("yesButton");
+
+
+    const noButton =
+        document.getElementById("noButton");
+
+
+    const noMessage =
+        document.getElementById("noMessage");
+
+
+    const destinationModal =
+        document.getElementById(
+            "destinationModal"
+        );
+
+    const finalModalContent = document.querySelector("#finalModal .modal");
+    
+    const dateModal =
+        document.getElementById(
+            "dateModal"
+        );
+
+
+    const finalModal =
+        document.getElementById(
+            "finalModal"
+        );
+
+
+    const destinationNext =
+        document.getElementById(
+            "destinationNext"
+        );
+
+
+    const dateNext =
+        document.getElementById(
+            "dateNext"
+        );
+
+
+    const sendWhatsApp =
+        document.getElementById(
+            "sendWhatsApp"
+        );
+
+
+    const dateModalContent =
+        document.getElementById(
+            "dateModalContent"
+        );
+
+
+    /*
+    ============================================================
+    КНОПКА "НЕТ"
+
+    1-й клик — вправо-вверх
+    2-й клик — ещё дальше
+    3-й клик — в другую сторону
+    4-й — снова на месте
+
+    После третьего клика появляется сообщение.
+    ============================================================
+    */
+
+    noButton.addEventListener(
+        "click",
+        function () {
+
+            noClickCount++;
+
+
+            const messages = [
+                "Хмм… не туда 😏",
+                "Эй, кнопка «Нет» не работает 😂",
+                "Я всё равно предлагаю попробовать ещё раз ❤️"
+            ];
+
+
+            if (noClickCount <= 3) {
+
+                noMessage.textContent =
+                    messages[
+                        noClickCount - 1
+                    ];
+
+                noMessage.classList.add(
+                    "show"
+                );
+
+            }
+
+
+            if (noClickCount === 1) {
+
+                noButton.style.transform =
+                    "translate(45px, -45px)";
+
+            }
+
+
+            else if (noClickCount === 2) {
+
+                noButton.style.transform =
+                    "translate(75px, -80px)";
+
+            }
+
+
+            else if (noClickCount === 3) {
+
+                noButton.style.transform =
+                    "translate(-40px, -55px)";
+
+            }
+
+
+            else {
+
+                noButton.style.transform =
+                    "translate(0, 0)";
+
+                noClickCount = 0;
+
+                setTimeout(
+                    function () {
+
+                        noMessage.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    1200
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+    ============================================================
+    ОТКРЫТИЕ ПЕРВОЙ МОДАЛКИ
+    ============================================================
+    */
+
+    yesButton.addEventListener(
+        "click",
+        function () {
+
+            openModal(
+                destinationModal
+            );
+
+        }
+    );
+
+
+    /*
+    ============================================================
+    ОТКРЫТИЕ / ЗАКРЫТИЕ МОДАЛОК
+    ============================================================
+    */
+
+    function openModal(modal) {
+
+        modal.classList.add(
+            "active"
+        );
+
+        document.body.style.overflow =
+            "hidden";
+    }
+
+
+    function closeModal(modal) {
+
+        modal.classList.remove(
+            "active"
+        );
+
+        document.body.style.overflow =
+            "";
+    }
+
+
+    /*
+    ============================================================
+    ПЕРВАЯ МОДАЛКА
+    ============================================================
+    */
+
+    destinationNext.addEventListener(
+        "click",
+        function () {
+
+            const selected =
+                document.querySelector(
+                    'input[name="destination"]:checked'
+                );
+
+
+            if (!selected) {
+
+                alert(
+                    "Сначала выбери вариант 😊"
+                );
+
+                return;
+            }
+
+
+            selectedDestination =
+                selected.value;
+
+
+            closeModal(destinationModal);
+
+            setTimeout(() => {
+                openModal(dateModal);
+
+                // Сначала показываем модалку нормально
+                dateModalContent.classList.remove(
+                    "rotate-upside-down",
+                    "rotate-back"
+                );
+
+                dateModalContent.style.transform = "rotate(0deg)";
+
+                // Даём браузеру отрисовать нормальное положение
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        // И только после этого плавно переворачиваем
+                        dateModalContent.classList.add("rotate-upside-down");
+                    });
+                });
+
+            }, 350);
+
+        }
+    );
+
+
+    /*
+    ============================================================
+    ВТОРАЯ МОДАЛКА — ДАТА
+    ============================================================
+    */
+
+    dateNext.addEventListener(
+        "click",
+        function () {
+
+            const selected =
+                document.querySelector(
+                    'input[name="date"]:checked'
+                );
+
+
+            if (!selected) {
+
+                alert(
+                    "Сначала выбери дату 😊"
+                );
+
+                return;
+            }
+
+
+            selectedDate =
+                selected.value;
+
+
+            closeModal(dateModal);
+
+            setTimeout(() => {
+                openModal(finalModal);
+
+                // Третья модалка сначала появляется вверх ногами
+                finalModalContent.style.transform = "rotate(180deg)";
+
+                // Даём браузеру показать её в перевёрнутом состоянии
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        // И плавно возвращаем в нормальное положение
+                        finalModalContent.classList.add("rotate-back");
+                    });
+                });
+
+            }, 350);
+
+        }
+    );
+
+
+    /*
+    ============================================================
+    WHATSAPP
+    ============================================================
+    */
+
+    sendWhatsApp.addEventListener(
+        "click",
+        function () {
+
+            const message =
+                "Я согласна ❤️\n\n" +
+                "Мы идём: " +
+                selectedDestination +
+                "\n" +
+                "Дата: " +
+                selectedDate +
+                "\n\n" +
+                "Жду свидание 😊";
+
+
+            const encodedMessage =
+                encodeURIComponent(
+                    message
+                );
+
+
+            const whatsappUrl =
+                "https://wa.me/" +
+                WHATSAPP_NUMBER +
+                "?text=" +
+                encodedMessage;
+
+
+            window.location.href =
+                whatsappUrl;
+
+        }
+    );
+
+
+    /*
+    ============================================================
+    ЗАКРЫТИЕ ПО КЛИКУ ВНЕ МОДАЛКИ
+    ============================================================
+    */
+
+    [
+        destinationModal,
+        dateModal,
+        finalModal
+    ].forEach(
+        function (modal) {
+
+            modal.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        event.target === modal
+                    ) {
+
+                        closeModal(
+                            modal
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
