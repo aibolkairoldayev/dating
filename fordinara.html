@@ -892,6 +892,9 @@
             }
         }
 
+
+        /* Третья модалка: из перевёрнутого положения обратно */
+
         .rotate-back {
             animation: flipBack 1s ease-in-out forwards;
         }
@@ -906,6 +909,12 @@
             }
         }
 
+
+        /* Начальное положение третьей модалки */
+
+        .final-upside-down {
+            transform: rotate(180deg);
+        }
 
         /* =========================================
            FINAL MODAL
@@ -1836,13 +1845,11 @@
                     "rotate-back"
                 );
 
-                dateModalContent.style.transform = "rotate(0deg)";
-
-                // Даём браузеру отрисовать нормальное положение
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
-                        // И только после этого плавно переворачиваем
-                        dateModalContent.classList.add("rotate-upside-down");
+                        dateModalContent.classList.add(
+                            "rotate-upside-down"
+                        );
                     });
                 });
 
@@ -1887,16 +1894,31 @@
             setTimeout(() => {
                 openModal(finalModal);
 
-                // Третья модалка сначала появляется вверх ногами
-                finalModalContent.style.transform = "rotate(180deg)";
+                // Сначала третья модалка находится вверх ногами
+                finalModalContent.classList.add(
+                    "final-upside-down"
+                );
 
-                // Даём браузеру показать её в перевёрнутом состоянии
+                // Даём браузеру отрисовать её в этом состоянии
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
-                        // И плавно возвращаем в нормальное положение
-                        finalModalContent.classList.add("rotate-back");
+
+                        // Затем плавно возвращаем в нормальное положение
+                        finalModalContent.classList.add(
+                            "rotate-back"
+                        );
+
                     });
                 });
+                finalModalContent.addEventListener(
+                    "animationend",
+                    function () {
+                        finalModalContent.classList.remove(
+                            "final-upside-down",
+                            "rotate-back"
+                        );
+                    }
+                );
 
             }, 350);
 
