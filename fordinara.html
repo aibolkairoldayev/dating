@@ -1407,7 +1407,7 @@
     class="modal-overlay"
     id="dateModal">
 
-    <div class="rotation-wrapper">
+    <div class="rotation-wrapper" id="dateRotationWrapper">
 
         <div class="modal" id="dateModalContent">
 
@@ -1543,6 +1543,8 @@
     class="modal-overlay"
     id="finalModal">
 
+    <div class="rotation-wrapper" id="finalRotationWrapper">
+
     <div class="modal">
 
 
@@ -1578,6 +1580,8 @@
             Отправить ответы в WhatsApp
 
         </button>
+
+    </div>
 
     </div>
 
@@ -1631,7 +1635,10 @@
             "destinationModal"
         );
 
-    const finalModalContent = document.querySelector("#finalModal .modal");
+    const finalRotationWrapper =
+        document.getElementById(
+            "finalRotationWrapper"
+        );
     
     const dateModal =
         document.getElementById(
@@ -1663,9 +1670,9 @@
         );
 
 
-    const dateModalContent =
+    const dateRotationWrapper =
         document.getElementById(
-            "dateModalContent"
+            "dateRotationWrapper"
         );
 
 
@@ -1837,21 +1844,16 @@
             closeModal(destinationModal);
 
             setTimeout(() => {
-                openModal(dateModal);
-
-                // Сначала показываем модалку нормально
-                dateModalContent.classList.remove(
+                dateRotationWrapper.classList.remove(
                     "rotate-upside-down",
                     "rotate-back"
                 );
+                void dateRotationWrapper.offsetWidth;
 
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        dateModalContent.classList.add(
-                            "rotate-upside-down"
-                        );
-                    });
-                });
+                openModal(dateModal);
+                dateRotationWrapper.classList.add(
+                    "rotate-upside-down"
+                );
 
             }, 350);
 
@@ -1892,34 +1894,37 @@
             closeModal(dateModal);
 
             setTimeout(() => {
-                openModal(finalModal);
-
-                // Сначала третья модалка находится вверх ногами
-                finalModalContent.classList.add(
+                finalRotationWrapper.classList.remove(
+                    "final-upside-down",
+                    "rotate-back"
+                );
+                finalRotationWrapper.classList.add(
                     "final-upside-down"
                 );
+                void finalRotationWrapper.offsetWidth;
 
-                // Даём браузеру отрисовать её в этом состоянии
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-
-                        // Затем плавно возвращаем в нормальное положение
-                        finalModalContent.classList.add(
-                            "rotate-back"
-                        );
-
-                    });
-                });
-                finalModalContent.addEventListener(
+                finalRotationWrapper.addEventListener(
                     "animationend",
-                    function () {
-                        finalModalContent.classList.remove(
+                    function onFinalRotationEnd(event) {
+                        if (
+                            event.target !== finalRotationWrapper ||
+                            event.animationName !== "flipBack"
+                        ) {
+                            return;
+                        }
+
+                        finalRotationWrapper.classList.remove(
                             "final-upside-down",
                             "rotate-back"
                         );
-                    }
+                    },
+                    { once: true }
                 );
 
+                openModal(finalModal);
+                finalRotationWrapper.classList.add(
+                    "rotate-back"
+                );
             }, 350);
 
         }
