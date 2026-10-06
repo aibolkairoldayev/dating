@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Небольшой вопрос 💌</title>
+    <title>Кішігірім сұрақ 💌</title>
 
     <style>
 
@@ -1057,17 +1057,17 @@
 
 
         <h1>
-            Привет, Маша!
+            Сәлем, Динара!
         </h1>
 
 
         <p class="subtitle">
-            У меня к тебе один очень важный вопрос…
+            Саған бір сұрағым бар...
         </p>
 
 
         <p class="question-text">
-            Хочешь ли ты пойти со мной на свидание? 😊
+            Менімен кездесуге барасың ба? 😊
         </p>
 
 
@@ -1078,7 +1078,7 @@
                 class="main-btn yes-btn"
                 id="yesButton">
 
-                Конечно ❤️
+                Әрине ❤️
 
             </button>
 
@@ -1088,7 +1088,7 @@
                 class="main-btn no-btn"
                 id="noButton">
 
-                Нет
+                Жоқ 😅
 
             </button>
 
@@ -1121,12 +1121,12 @@
 
 
         <h2>
-            Куда ты хочешь?
+            Қайда барғың келеді?
         </h2>
 
 
         <p class="modal-description">
-            Выбирай, я подстроюсь 😉
+            Сен таңтаған жерге барамыз 😉
         </p>
 
 
@@ -1141,7 +1141,8 @@
                     type="radio"
                     name="destination"
                     id="billiards"
-                    value="бильярд">
+                    value="бильярд"
+                    data-image="img/option1.jpg">
 
 
                 <label
@@ -1200,7 +1201,8 @@
                     type="radio"
                     name="destination"
                     id="picnic"
-                    value="пикник (берёзовая роща)">
+                    value="пикник (берёзовая роща)"
+                    data-image="img/option2.jpg">
 
 
                 <label
@@ -1261,7 +1263,8 @@
                     type="radio"
                     name="destination"
                     id="theatre"
-                    value="театр">
+                    value="театр"
+                    data-image="img/option3.jpg">
 
 
                 <label
@@ -1326,7 +1329,8 @@
                     type="radio"
                     name="destination"
                     id="standup"
-                    value="стендап (English)">
+                    value="стендап (English)"
+                    data-image="img/option4.jpg">
 
 
                 <label
@@ -1378,6 +1382,73 @@
 
             </div>
 
+            <!-- ФУТБОЛ -->
+
+            <div class="option">
+
+                <input
+                    type="radio"
+                    name="destination"
+                    id="football"
+                    value="футбол (Кайрат — Жетису)"
+                    data-image="img/option5.jpg">
+
+
+                <label
+                    class="option-label"
+                    for="football">
+
+                    <span class="option-icon">
+
+                        <svg viewBox="0 0 24 24">
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="9">
+                            </circle>
+
+                            <path
+                                d="M12 3l3 4-1 4h-4l-1-4z">
+                            </path>
+
+                            <path
+                                d="M9 11l-4 3">
+                            </path>
+
+                            <path
+                                d="M15 11l4 3">
+                            </path>
+
+                            <path
+                                d="M10 15l-1 5">
+                            </path>
+
+                            <path
+                                d="M14 15l1 5">
+                            </path>
+
+                        </svg>
+
+                    </span>
+
+
+                    <span class="option-text">
+
+                        <span class="option-title">
+                            Футбол көру
+                        </span>
+
+                        <span class="option-subtitle">
+                            Қайрат — Жетісу
+                        </span>
+
+                    </span>
+
+                </label>
+
+            </div>
+
         </div>
 
 
@@ -1388,7 +1459,7 @@
                 class="next-btn"
                 id="destinationNext">
 
-                Далее →
+                Ары қарай →
 
             </button>
 
@@ -1417,12 +1488,12 @@
 
 
             <h2>
-                Когда тебе удобно?
+                Саған қашан ыңғайлы?
             </h2>
 
 
             <p class="modal-description">
-                Выбирай дату 😉
+                Күнді таңда 😉
             </p>
 
 
@@ -1449,7 +1520,7 @@
                         </span>
 
                         <span class="date-month">
-                            октября
+                            қазан
                         </span>
 
                     </label>
@@ -1477,7 +1548,7 @@
                         </span>
 
                         <span class="date-month">
-                            октября
+                            қазан
                         </span>
 
                     </label>
@@ -1505,7 +1576,7 @@
                         </span>
 
                         <span class="date-month">
-                            октября
+                            қазан
                         </span>
 
                     </label>
@@ -1522,7 +1593,7 @@
                     class="next-btn"
                     id="dateNext">
 
-                    Далее →
+                    Ары қарай →
 
                 </button>
 
@@ -1548,12 +1619,12 @@
     <div class="modal">
 
 
-        <!-- ВРЕМЕННАЯ КАРТИНКА -->
+        <!-- КАРТИНКА ВЫБРАННОГО ВАРИАНТА -->
 
         <img
             class="final-image"
             id="finalImage"
-            src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=900&q=80"
+            src="img/option1.jpg"
             alt="Свидание">
 
 
@@ -1563,12 +1634,12 @@
 
 
         <h2>
-            Всё договорились!
+            Келістік!
         </h2>
 
 
         <p class="final-text">
-            Остался последний штрих — отправь мне свои ответы 💌
+            Соңғы штрих қалды — жауаптарыңды маған жібер 💌
         </p>
 
 
@@ -1577,7 +1648,7 @@
             class="next-btn"
             id="sendWhatsApp">
 
-            Отправить ответы в WhatsApp
+            WhatsApp-қа жіберу
 
         </button>
 
@@ -1596,7 +1667,7 @@
     ============================================================
     */
 
-    const WHATSAPP_NUMBER = "77001234567";
+    const WHATSAPP_NUMBER = "77073119423";
 
 
     /*
@@ -1669,6 +1740,11 @@
             "sendWhatsApp"
         );
 
+    const finalImage =
+        document.getElementById(
+            "finalImage"
+        );
+
 
     const dateRotationWrapper =
         document.getElementById(
@@ -1697,9 +1773,9 @@
 
 
             const messages = [
-                "Хмм… не туда 😏",
-                "Эй, кнопка «Нет» не работает 😂",
-                "Я всё равно предлагаю попробовать ещё раз ❤️"
+                "сенімдісің бе? 😏",
+                "Дұрыстап ойландың ба? 😂",
+                "Тағы бір рет көрсей! ❤️"
             ];
 
 
@@ -1840,6 +1916,9 @@
             selectedDestination =
                 selected.value;
 
+            finalImage.src =
+                selected.dataset.image;
+
 
             closeModal(destinationModal);
 
@@ -1942,14 +2021,14 @@
         function () {
 
             const message =
-                "Я согласна ❤️\n\n" +
-                "Мы идём: " +
+                "Мен келістім ❤️\n\n" +
+                "Біз осы жерге барамыз: " +
                 selectedDestination +
                 "\n" +
-                "Дата: " +
+                "Мына күні: " +
                 selectedDate +
                 "\n\n" +
-                "Жду свидание 😊";
+                "Асыға күтемін 😊";
 
 
             const encodedMessage =
