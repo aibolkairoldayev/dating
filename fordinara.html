@@ -438,6 +438,28 @@
             transform: scale(0.94) !important;
         }
 
+        .yes-btn.accepted {
+            animation:
+                yesAccepted 0.45s ease-in
+                forwards;
+            pointer-events: none;
+        }
+
+        .yes-btn.accepted::after {
+            animation: none;
+            opacity: 0;
+        }
+
+        @keyframes yesAccepted {
+
+            to {
+                opacity: 0;
+                transform:
+                    scale(2.2)
+                    translateY(-12px);
+            }
+        }
+
 
         /* =========================================
            КНОПКА "НЕТ"
@@ -2067,6 +2089,9 @@
     yesButton.addEventListener(
         "click",
         function () {
+
+            yesButton.disabled = true;
+            yesButton.classList.add("accepted");
 
             showConfetti().then(
                 function () {
