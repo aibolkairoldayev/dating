@@ -1676,6 +1676,8 @@
 
     let confettiAnimationFrame;
 
+    let confettiPromise = null;
+
 
     /*
     ============================================================
@@ -1843,36 +1845,49 @@
 
     function showConfetti() {
 
+        if (confettiPromise) {
+
+            return confettiPromise;
+
+        }
+
+
         if (
             window.matchMedia(
                 "(prefers-reduced-motion: reduce)"
             ).matches
         ) {
 
-            return;
+            return Promise.resolve();
 
         }
 
+        let resolveModalDelay;
+        let modalDelayResolved = false;
 
-        if (confettiAnimationFrame) {
+        const animationPromise =
+            new Promise(
+                function (resolve) {
 
-            cancelAnimationFrame(
-                confettiAnimationFrame
+                    resolveModalDelay = resolve;
+
+                }
             );
 
-        }
+        function finishModalDelay() {
 
+            if (!modalDelayResolved) {
 
-        const existingCanvas =
-            document.querySelector(
-                ".confetti-canvas"
-            );
+                modalDelayResolved = true;
+                resolveModalDelay();
 
-        if (existingCanvas) {
-
-            existingCanvas.remove();
+            }
 
         }
+
+
+        confettiPromise =
+            animationPromise;
 
 
         const canvas =
@@ -1892,7 +1907,9 @@
             console.error(
                 "Unable to create the confetti canvas context."
             );
-            return;
+            confettiPromise = null;
+            finishModalDelay();
+            return animationPromise;
 
         }
 
@@ -1957,8 +1974,21 @@
         const duration =
             3500;
 
+        const modalLeadTime =
+            300;
+
 
         function animateConfetti(now) {
+
+            const elapsed =
+                now - startedAt;
+
+            if (elapsed >= duration - modalLeadTime) {
+
+                finishModalDelay();
+
+            }
+
 
             context.clearRect(
                 0,
@@ -2003,7 +2033,7 @@
             );
 
 
-            if (now - startedAt < duration) {
+            if (elapsed < duration) {
 
                 confettiAnimationFrame =
                     requestAnimationFrame(
@@ -2016,6 +2046,8 @@
 
                 canvas.remove();
                 confettiAnimationFrame = null;
+                confettiPromise = null;
+                finishModalDelay();
 
             }
 
@@ -2027,6 +2059,8 @@
                 animateConfetti
             );
 
+        return animationPromise;
+
     }
 
 
@@ -2034,10 +2068,14 @@
         "click",
         function () {
 
-            showConfetti();
+            showConfetti().then(
+                function () {
 
-            openModal(
-                destinationModal
+                    openModal(
+                        destinationModal
+                    );
+
+                }
             );
 
         }
